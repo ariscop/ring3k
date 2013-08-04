@@ -48,6 +48,8 @@
 #include "file.h"
 #include "symlink.h"
 
+#include "config.h"
+
 // FIXME: use unicode tables
 WCHAR lowercase(const WCHAR ch)
 {
