@@ -26,6 +26,8 @@
 #include <assert.h>
 #include "registryeditor.h"
 
+#include <stdio.h>
+
 void RegistryTreeView::currentChanged( const QModelIndex &current, const QModelIndex &previous )
 {
 	fprintf(stderr, "currentChanged\n");

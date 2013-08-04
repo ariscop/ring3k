@@ -63,13 +63,13 @@ public:
 	{
 		assert(elem->entry[X].is_linked());
 		if (_head == elem)
-			_head = nextptr(elem->entry[X]);
+			_head = this->nextptr(elem->entry[X]);
 		else
-			nextptr(prevptr(elem->entry[X])->entry[X]) = nextptr(elem->entry[X]);
+			this->nextptr(this->prevptr(elem->entry[X])->entry[X]) = this->nextptr(elem->entry[X]);
 		if (_tail == elem)
-			_tail = prevptr(elem->entry[X]);
+			_tail = this->prevptr(elem->entry[X]);
 		else
-			prevptr(nextptr(elem->entry[X])->entry[X]) = prevptr(elem->entry[X]);
+			this->prevptr(this->nextptr(elem->entry[X])->entry[X]) = this->prevptr(elem->entry[X]);
 		elem->entry[X].init();
 	}
 
@@ -77,11 +77,11 @@ public:
 	{
 		assert(!elem->entry[X].is_linked());
 		if (_tail)
-			nextptr(_tail->entry[X]) = elem;
+			this->nextptr(_tail->entry[X]) = elem;
 		else
 			_head = elem;
-		prevptr(elem->entry[X]) = _tail;
-		nextptr(elem->entry[X]) = 0;
+		this->prevptr(elem->entry[X]) = _tail;
+		this->nextptr(elem->entry[X]) = 0;
 		_tail = elem;
 	}
 
@@ -89,36 +89,36 @@ public:
 	{
 		assert(!elem->entry[X].is_linked());
 		if (_head)
-			prevptr(_head->entry[X]) = elem;
+			this->prevptr(_head->entry[X]) = elem;
 		else
 			_tail = elem;
-		nextptr(elem->entry[X]) = _head;
-		prevptr(elem->entry[X]) = 0;
+		this->nextptr(elem->entry[X]) = _head;
+		this->prevptr(elem->entry[X]) = 0;
 		_head = elem;
 	}
 
 	void insert_after( T* point, T* elem )
 	{
 		assert(!elem->entry[X].is_linked());
-		if (nextptr(point->entry[X]))
-			prevptr(nextptr(point->entry[X])->entry[X]) = elem;
+		if (this->nextptr(point->entry[X]))
+			this->prevptr(this->nextptr(point->entry[X])->entry[X]) = elem;
 		else
 			_tail = elem;
-		nextptr(elem->entry[X]) = nextptr(point->entry[X]);
-		nextptr(point->entry[X]) = elem;
-		prevptr(elem->entry[X]) = point;
+		this->nextptr(elem->entry[X]) = this->nextptr(point->entry[X]);
+		this->nextptr(point->entry[X]) = elem;
+		this->prevptr(elem->entry[X]) = point;
 	}
 
 	void insert_before( T* point, T* elem )
 	{
 		assert(!elem->entry[X].is_linked());
-		if (prevptr(point->entry[X]))
-			nextptr(prevptr(point->entry[X])->entry[X]) = elem;
+		if (this->prevptr(point->entry[X]))
+			this->nextptr(this->prevptr(point->entry[X])->entry[X]) = elem;
 		else
 			_head = elem;
-		prevptr(elem->entry[X]) = prevptr(point->entry[X]);
-		prevptr(point->entry[X]) = elem;
-		nextptr(elem->entry[X]) = point;
+		this->prevptr(elem->entry[X]) = this->prevptr(point->entry[X]);
+		this->prevptr(point->entry[X]) = elem;
+		this->nextptr(elem->entry[X]) = point;
 	}
 };
 
@@ -128,7 +128,7 @@ template<class T, const int X> class list_iter : public list_element_accessor<T>
 	T* i;
 public:
 	explicit list_iter(list_anchor<T,X>& l) : list(l), i(l.head()) {}
-	T* next() { i = nextptr(i->entry[X]); return i; }
+	T* next() { i = this->nextptr(i->entry[X]); return i; }
 	T* cur() { return i; }
 	operator bool() { return i != 0; }
 	operator T*() { return i; }

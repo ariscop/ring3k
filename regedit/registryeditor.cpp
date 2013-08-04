@@ -26,6 +26,8 @@
 #include <assert.h>
 #include "registryeditor.h"
 
+#include <stdio.h>
+
 RegistryEditor::RegistryEditor( struct hive* h ) :
 	hive( h )
 {

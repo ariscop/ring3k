@@ -72,15 +72,15 @@ then
 fi
 
 dnl Check for qmake
-AC_CHECK_PROGS(QT_QMAKE, qmake, true)
+AC_CHECK_PROGS(QT_QMAKE, qmake-qt4, true)
 
 dnl Check for mingw32 cross compilation environment
-AC_CHECK_PROGS(MINGW32CC,i686-pc-mingw32-gcc i586-mingw32msvc-cc no)
-AC_CHECK_PROGS(MINGW32STRIP,i686-pc-mingw32-strip i586-mingw32msvc-strip no)
-AC_CHECK_PROGS(MINGW32AS,i686-pc-mingw32-as i586-mingw32msvc-as no)
-AC_CHECK_PROGS(MINGW32AR,i686-pc-mingw32-ar i586-mingw32msvc-ar no)
-AC_CHECK_PROGS(MINGW32RANLIB,i686-pc-mingw32-ranlib i586-mingw32msvc-ranlib no)
-AC_CHECK_PROGS(MINGW32WINDRES,i686-pc-mingw32-windres i586-mingw32msvc-windres no)
+AC_CHECK_PROGS(MINGW32CC,i686-pc-mingw32-gcc i586-mingw32msvc-cc i486-mingw32-gcc no)
+AC_CHECK_PROGS(MINGW32STRIP,i686-pc-mingw32-strip i586-mingw32msvc-strip i486-mingw32-strip no)
+AC_CHECK_PROGS(MINGW32AS,i686-pc-mingw32-as i586-mingw32msvc-as i486-mingw32-as no)
+AC_CHECK_PROGS(MINGW32AR,i686-pc-mingw32-ar i586-mingw32msvc-ar i486-mingw32-ar no)
+AC_CHECK_PROGS(MINGW32RANLIB,i686-pc-mingw32-ranlib i586-mingw32msvc-ranlib i486-mingw32-ranlib no)
+AC_CHECK_PROGS(MINGW32WINDRES,i686-pc-mingw32-windres i586-mingw32msvc-windres i486-mingw32-windres no)
 
 AC_CHECK_PROGS(ISOINFO,isoinfo no)
 
